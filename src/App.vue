@@ -1,23 +1,40 @@
 <template>
   <div id="app">
- <a v-bind:href="url">点击去百度</a>
-    <!-- 语法: :原生属性名="vue变量" -->
-    <img :src="imgUrl" />
-    <img :src="localImg">
+ <p>你要购买商品的数量: {{ count }}</p>
+  <!-- 1. 绑定事件
+  语法: v-on:事件名="少量代码"
+  语法: v-on:事件名="methods里函数名"
+  语法: v-on:事件名="methods里函数名(值)"
+  语法: @事件名="methods里函数名"
+  -->
+  <button v-on:click="count = count + 1">+1</button>
+  <button v-on:click="addFn">+1</button>
+  <button v-on:click="addCountFn(5)">+5</button>
+  <button @click="subFn">减少1</button>
   </div>
 </template>
 
 <script>
-import imgObj from './assets/logo.png'
+
 export default {
   name: 'App',
   data() { // 格式固定, 定义vue数据之处
     return {  // key相当于变量名
-      url: 'http://www.baidu.com',
-      imgUrl: "http://yun.itheima.com/Upload/./Images/20210412/60741c11ab77b.jpg",
-      localImg: imgObj
+     count:0
     }
-  }
+  },
+  methods: { // vue 的方法写在 里边
+            addFn(){ // this代表export default后面的组件对象(下属有data里return出来的属性)
+                this.count++
+                // this 要注意一下
+            },
+            addCountFn(num){
+                this.count += num
+            },
+            subFn(){
+                this.count--
+            }
+        }
 }
 </script>
 
