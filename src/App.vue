@@ -1,16 +1,8 @@
 <template>
   <div id="app">
- <p>你要购买商品的数量: {{ count }}</p>
-  <!-- 1. 绑定事件
-  语法: v-on:事件名="少量代码"
-  语法: v-on:事件名="methods里函数名"
-  语法: v-on:事件名="methods里函数名(值)"
-  语法: @事件名="methods里函数名"
-  -->
-  <button v-on:click="count = count + 1">+1</button>
-  <button v-on:click="addFn">+1</button>
-  <button v-on:click="addCountFn(5)">+5</button>
-  <button @click="subFn">减少1</button>
+ <a @click="one" href="http://www.baidu.com">阻止百度</a>
+    <hr>
+    <a @click="two(10, $event)" href="http://www.baidu.com">阻止去百度</a>
   </div>
 </template>
 
@@ -20,20 +12,18 @@ export default {
   name: 'App',
   data() { // 格式固定, 定义vue数据之处
     return {  // key相当于变量名
-     count:0
+     
     }
   },
   methods: { // vue 的方法写在 里边
-            addFn(){ // this代表export default后面的组件对象(下属有data里return出来的属性)
-                this.count++
-                // this 要注意一下
-            },
-            addCountFn(num){
-                this.count += num
-            },
-            subFn(){
-                this.count--
-            }
+            // 1. 事件触发, 无传值, 可以直接获取事件对象
+    one(e){
+      e.preventDefault()
+    },
+    // 2. 事件触发, 传值, 需要手动传入$event
+    two(num, e){
+      e.preventDefault()
+    }
         }
 }
 </script>
