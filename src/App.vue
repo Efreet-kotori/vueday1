@@ -1,30 +1,39 @@
 <template>
+  <!-- 思路
+  1. 变量准备-静态页面铺设
+  2. 绑定点击事件 
+  3. 截取字符串返回数组
+  4. 翻转
+  5. 数组拼接起来 -->
   <div>
-    <!-- 1. 绑定键盘按下事件.enter - 回车 
-         2. .esc修饰符 - 取消键-->
-    <input type="text" @keydown.enter="enterFn">
-    <hr>
-    <input type="text" @keydown.esc="escFn">
+    <!-- 1. 变量准备-静态页面铺设 -->
+    <h1>{{ message }}</h1>
+     <!-- 2. 绑定点击事件 -->
+    <button @click="btn">逆转世界</button>
   </div>
 </template>
 
 <script>
-
 export default {
-  data() { // 格式固定, 定义vue数据之处
-    return {  // key相当于变量名
-     
-    }
+  data() {
+    return {
+      message: "HELLO, WORLD",
+    };
   },
-  methods: { // vue 的方法写在 里边
-        enterFn(){
-     console.log("enter回车按键了");
-   },
-   escFn(){
-     console.log("esc按键了");
-   }
-        }
-}
+  methods: {
+    btn(){
+            // // 3. 截取字符串返回数组
+      // let arr = this.message.split("")
+      // // 4. 翻转
+      // arr.reverse()
+      // // 5. 数组拼接起来
+      // this.message = arr.join("")
+
+      // 简化
+      this.message = this.message.split("").reverse().join("")
+    }
+  }
+};
 </script>
 
 <style>
